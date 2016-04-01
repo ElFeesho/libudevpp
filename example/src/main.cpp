@@ -62,6 +62,21 @@ int main(int argc, char **argv)
 					std::cout << "   Sys Path: " << device.get_syspath() << std::endl;
 					std::cout << "   Sys Name: " << device.get_sysname() << std::endl;
 
+					auto sysattr_keys = device.get_sysattr_keys();
+					for (auto key : sysattr_keys)
+					{
+						std::cout << "System Attribute key: " << key << std::endl;
+					}
+
+					if (device.has_sysattr("trigger"))
+					{
+						std::cout << termcolor::green << "Contains trigger system attribute" << termcolor::reset << std::endl;
+					}
+					else
+					{
+						std::cout << termcolor::red << "No trigger system attribute" << termcolor::reset << std::endl;
+					}
+
 					auto sysattrs = device.get_sysattr_map();
 					if (sysattrs.size() > 0)
 					{

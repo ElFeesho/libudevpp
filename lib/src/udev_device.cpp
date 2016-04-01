@@ -1,5 +1,4 @@
-#include <map>
-
+#include <algorithm>
 #include <libudev.h>
 
 #include "udev.h"
@@ -118,6 +117,26 @@ namespace Udev
 	std::string UdevDevice::get_driver() const
 	{
 		return udev_device_get_driver(handle);
+	}
+
+	bool UdevDevice::has_sysattr(const std::string named) const
+	{
+		auto keys = get_sysattr_keys();
+		return std::find(keys.begin(), keys.end(), named) != keys.end();
+	}
+
+	std::vector<std::string> UdevDevice::get_sysattr_keys() const
+	{
+		std::vector<std::string> keys;
+
+		auto sysattr_list = udev_device_get_sysattr_list_entry(handle);
+		struct udev_list_entry *entry = nullptr;
+		udev_list_entry_foreach(entry, sysattr_list)
+		{
+			keys.emplace_back(udev_list_entry_get_name(entry));
+		}
+
+		return keys;
 	}
 
 	std::map<std::string, std::string> UdevDevice::get_sysattr_map() const

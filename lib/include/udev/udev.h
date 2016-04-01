@@ -2,6 +2,7 @@
 
 #include <map>
 #include <string>
+#include <vector>
 
 namespace Udev
 {
@@ -78,6 +79,10 @@ namespace Udev
 
 		bool has_driver() const;
 		std::string get_driver() const;
+
+		bool has_sysattr(const std::string named) const;
+
+		std::vector<std::string> get_sysattr_keys() const;
 
 		std::map<std::string, std::string> get_sysattr_map() const;
 	private:
