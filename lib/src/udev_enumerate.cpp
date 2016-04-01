@@ -91,7 +91,6 @@ namespace Udev
 		struct udev_list_entry *enumeration_list = udev_enumerate_get_list_entry(handle);
 		udev_list_entry_foreach(entry, enumeration_list)
 		{
-			std::cout << "BOOP" << std::endl;
 			const char *device_path = udev_list_entry_get_name(entry);
 			devices.emplace_back(udev_device_new_from_syspath(udev_enumerate_get_udev(handle), device_path));
 		}

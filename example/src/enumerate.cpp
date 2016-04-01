@@ -11,6 +11,8 @@ int main(int argc, char **argv)
 
 	enumerator.add_match_subsystem("input");
 
+	enumerator.scan_devices();
+
 	for (Udev::UdevDevice device : enumerator.enumerate_devices())
 	{
 		std::cout << "Device Path: " << device.get_devpath() << std::endl;
