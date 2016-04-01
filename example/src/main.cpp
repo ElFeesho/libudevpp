@@ -48,14 +48,22 @@ int main(int argc, char **argv)
 				try
 				{
 					Udev::UdevDevice device = monitor.receive_device();
+					std::cout << "Device Path: " << device.get_devpath() << std::endl;
 					if (device.has_action())
 					{
 						std::cout << "Device Action: " << device.get_action() << std::endl;
 					}
-					if (device.has_devpath())
+
+					if (device.has_subsystem())
 					{
-						std::cout << "Device Path: " << device.get_devpath() << std::endl;
+						std::cout << "Device Subsystem: " << device.get_subsystem() << std::endl;
 					}
+
+					if (device.has_devtype())
+					{
+						std::cout << "Device Type: " << device.get_devtype() << std::endl;
+					}
+
 					if (device.has_devnode())
 					{
 						std::cout << "Device Node: " << device.get_devnode() << std::endl;

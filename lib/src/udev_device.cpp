@@ -53,16 +53,6 @@ namespace Udev
 		return std::string(udev_device_get_action(handle));
 	}
 
-	bool UdevDevice::has_devpath() const
-	{
-		return udev_device_get_devpath(handle) != nullptr;
-	}
-
-	std::string UdevDevice::get_devpath() const
-	{
-		return udev_device_get_devpath(handle);
-	}
-
 	bool UdevDevice::has_devnode() const
 	{
 		return udev_device_get_devnode(handle) != nullptr;
@@ -71,5 +61,45 @@ namespace Udev
 	std::string UdevDevice::get_devnode() const
 	{
 		return udev_device_get_devnode(handle);
+	}
+
+	bool UdevDevice::has_devtype() const
+	{
+		return udev_device_get_devtype(handle) != nullptr;
+	}
+
+	std::string UdevDevice::get_devtype() const
+	{
+		return udev_device_get_devtype(handle);
+	}
+
+	bool UdevDevice::has_subsystem() const
+	{
+		return udev_device_get_subsystem(handle) != nullptr;
+	}
+
+	std::string UdevDevice::get_subsystem() const
+	{
+		return udev_device_get_subsystem(handle);
+	}
+
+	std::string UdevDevice::get_devpath() const
+	{
+		return udev_device_get_devpath(handle);
+	}
+
+	std::string UdevDevice::get_syspath() const
+	{
+		return udev_device_get_syspath(handle);
+	}
+
+	std::string UdevDevice::get_sysname() const
+	{
+		return udev_device_get_sysname(handle);
+	}
+
+	std::string UdevDevice::get_sysnum() const
+	{
+		return udev_device_get_sysnum(handle);
 	}
 }
