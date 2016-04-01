@@ -86,6 +86,12 @@ namespace Udev
 		std::vector<std::string> get_sysattr_keys() const;
 
 		std::map<std::string, std::string> get_sysattr_map() const;
+
+		std::vector<std::string> get_devlinks() const;
+
+		bool has_property(const std::string named) const;
+		std::string get_property(const std::string named) const;
+		std::map<std::string, std::string> get_properties() const;
 	private:
 		UdevDeviceHandle *handle;
 	};

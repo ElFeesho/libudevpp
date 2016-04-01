@@ -169,5 +169,38 @@ namespace Udev
 
 		return attr;
 	}
+
+	std::vector<std::string> UdevDevice::get_devlinks() const
+	{
+		std::vector<std::string> links;
+		struct udev_list_entry *entry = nullptr;
+		udev_list_entry_foreach(entry, udev_device_get_devlinks_list_entry(handle))
+		{
+			links.emplace_back(udev_list_entry_get_name(entry));
+		}
+		return links;
+	}
+
+	bool UdevDevice::has_property(const std::string named) const
+	{
+		return udev_device_get_property_value(handle, named.c_str()) != nullptr;
+	}
+
+	std::string UdevDevice::get_property(const std::string named) const
+	{
+		return udev_device_get_property_value(handle, named.c_str());
+	}
+
+	std::map<std::string, std::string> UdevDevice::get_properties() const
+	{
+		std::map<std::string, std::string> property_map;
+		struct udev_list_entry *entry = nullptr;
+		struct udev_list_entry *properties = udev_device_get_properties_list_entry(handle);
+		udev_list_entry_foreach(entry, properties)
+		{
+			property_map[std::string(udev_list_entry_get_name(entry))] = std::string(udev_list_entry_get_value(entry));
+		}
+		return property_map;
+	}
 }
 

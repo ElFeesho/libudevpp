@@ -120,6 +120,18 @@ int main(int argc, char **argv)
 					{
 						std::cout << "Device Node: " << device.get_devnode() << std::endl;
 					}
+
+					std::cout << "Dev Links: " << std::endl;
+					for(auto dev_link : device.get_devlinks())
+					{
+						std::cout << "\t" << dev_link << std::endl;
+					}
+
+					std::cout << "Properties: " << std::endl;
+					for(auto property_pair : device.get_properties())
+					{
+						std::cout << "Property: " << property_pair.first << ": " << property_pair.second << std::endl;
+					}
 				}
 				catch(std::runtime_error ex)
 				{
