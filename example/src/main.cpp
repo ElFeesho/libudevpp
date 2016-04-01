@@ -6,6 +6,8 @@
 #include <sys/select.h>
 #include <signal.h>
 
+#include "termcolor.hpp"
+
 static bool run = true;
 
 void interrupt_handler(int signal_raised)
@@ -29,7 +31,7 @@ int main(int argc, char **argv)
 	}
 	catch(std::runtime_error ex)
 	{
-		std::cerr << "Error: " << ex.what() <<  std::endl;
+		std::cerr << termcolor::red << "Error: " << ex.what() << termcolor::reset << std::endl;
 		return -1;
 	}
 
@@ -44,11 +46,28 @@ int main(int argc, char **argv)
 		{
 			if (FD_ISSET(monitor_fd, &monitor_set))
 			{
-				std::cout << "Received event" << std::endl;
 				try
 				{
 					Udev::UdevDevice device = monitor.receive_device();
+					std::cout << termcolor::green << "Received Device" << termcolor::reset << std::endl;
+					if (device.is_initialized())
+					{
+						std::cout << termcolor::green << "Device is initialized" << termcolor::reset << std::endl;
+					}
+					else
+					{
+						std::cout << termcolor::red << "Device is not initialized" << termcolor::reset << std::endl;
+					}
 					std::cout << "Device Path: " << device.get_devpath() << std::endl;
+					std::cout << "   Sys Path: " << device.get_syspath() << std::endl;
+					std::cout << "   Sys Name: " << device.get_sysname() << std::endl;
+
+
+					if (device.has_sysnum())
+					{
+						std::cout << "Sys Num: " << device.get_sysnum() << std::endl;
+					}
+
 					if (device.has_action())
 					{
 						std::cout << "Device Action: " << device.get_action() << std::endl;
@@ -71,8 +90,9 @@ int main(int argc, char **argv)
 				}
 				catch(std::runtime_error ex)
 				{
-					std::cerr << "Failed receiving device: " << ex.what() << std::endl;
+					std::cerr << termcolor::red << "Failed receiving device: " << ex.what() << termcolor::reset << std::endl;
 				}
+				std::cout << std::endl;
 			}
 		}
 	}

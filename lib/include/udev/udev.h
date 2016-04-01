@@ -71,6 +71,8 @@ namespace Udev
 		std::string get_devpath() const;
 		std::string get_syspath() const;
 		std::string get_sysname() const;
+
+		bool has_sysnum() const;
 		std::string get_sysnum() const;
 
 

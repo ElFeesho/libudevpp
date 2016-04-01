@@ -98,6 +98,11 @@ namespace Udev
 		return udev_device_get_sysname(handle);
 	}
 
+	bool UdevDevice::has_sysnum() const
+	{
+		return udev_device_get_sysnum(handle) != nullptr;
+	}
+
 	std::string UdevDevice::get_sysnum() const
 	{
 		return udev_device_get_sysnum(handle);
