@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include <libudev.h>
 
 #include "udev.h"
@@ -35,6 +37,14 @@ namespace Udev
 		if (handle)
 		{
 			udev_monitor_unref(handle);
+		}
+	}
+
+	void UdevMonitor::enable_receiving() const
+	{
+		if (udev_monitor_enable_receiving(handle) != 0)
+		{
+			throw std::runtime_error("Unable to enable receiving of events");
 		}
 	}
 }

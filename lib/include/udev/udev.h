@@ -34,6 +34,8 @@ namespace Udev
 		UdevMonitor& operator=(const UdevMonitor &monitor);
 		UdevMonitor& operator=(UdevMonitor &&monitor);
 		~UdevMonitor();
+
+		void enable_receiving() const;
 	private:
 		UdevMonitorHandle *handle;
 	};
