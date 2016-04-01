@@ -54,6 +54,10 @@ namespace Udev
 		UdevDevice& operator=(const UdevDevice &);
 		UdevDevice& operator=(UdevDevice &&);
 		~UdevDevice();
+
+		bool has_action() const;
+		std::string get_action() const;
+
 	private:
 		UdevDeviceHandle *handle;
 	};

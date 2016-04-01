@@ -48,6 +48,10 @@ int main(int argc, char **argv)
 				try
 				{
 					Udev::UdevDevice device = monitor.receive_device();
+					if (device.has_action())
+					{
+						std::cout << "Device Action: " << device.get_action() << std::endl;
+					}
 				}
 				catch(std::runtime_error ex)
 				{
