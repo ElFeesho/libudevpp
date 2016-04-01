@@ -1,4 +1,6 @@
 #include <libudev.h>
+#include <assert.h>
+#include <string>
 
 #include "udev.h"
 
@@ -36,5 +38,11 @@ namespace Udev
 		{
 			udev_unref(handle);
 		}
+	}
+
+	UdevMonitor Udev::monitor_new_from_netlink(const char *name)
+	{
+		assert(name != nullptr && (std::string(name) == "udev" || std::string(name) == "kernel"));
+		return UdevMonitor(udev_monitor_new_from_netlink(handle, name));
 	}
 }
