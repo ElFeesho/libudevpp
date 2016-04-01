@@ -132,6 +132,12 @@ int main(int argc, char **argv)
 					{
 						std::cout << "Property: " << property_pair.first << ": " << property_pair.second << std::endl;
 					}
+
+					std::cout << "Tags: " << std::endl;
+					for(auto tag : device.get_tags())
+					{
+						std::cout << "Tag: " << tag << std::endl;
+					}
 				}
 				catch(std::runtime_error ex)
 				{

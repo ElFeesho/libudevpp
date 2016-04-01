@@ -82,9 +82,7 @@ namespace Udev
 
 		bool has_sysattr(const std::string named) const;
 		std::string get_sysattr(const std::string named) const;
-
 		std::vector<std::string> get_sysattr_keys() const;
-
 		std::map<std::string, std::string> get_sysattr_map() const;
 
 		std::vector<std::string> get_devlinks() const;
@@ -92,6 +90,10 @@ namespace Udev
 		bool has_property(const std::string named) const;
 		std::string get_property(const std::string named) const;
 		std::map<std::string, std::string> get_properties() const;
+
+		bool has_tag(const std::string named) const;
+		std::vector<std::string> get_tags() const;
+
 	private:
 		UdevDeviceHandle *handle;
 	};

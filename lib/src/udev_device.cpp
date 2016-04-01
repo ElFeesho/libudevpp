@@ -202,5 +202,25 @@ namespace Udev
 		}
 		return property_map;
 	}
+
+	bool UdevDevice::has_tag(const std::string named) const
+	{
+		return udev_device_has_tag(handle, named.c_str());
+	}
+
+	std::vector<std::string> UdevDevice::get_tags() const
+	{
+		std::vector<std::string> tags;
+
+		struct udev_list_entry *entry;
+		struct udev_list_entry *tags_list = udev_device_get_tags_list_entry(handle);
+
+		udev_list_entry_foreach(entry, tags_list)
+		{
+			tags.emplace_back(udev_list_entry_get_name(entry));
+		}
+
+		return tags;
+	}
 }
 
