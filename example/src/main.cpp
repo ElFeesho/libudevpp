@@ -56,6 +56,10 @@ int main(int argc, char **argv)
 					{
 						std::cout << "Device Path: " << device.get_devpath() << std::endl;
 					}
+					if (device.has_devnode())
+					{
+						std::cout << "Device Node: " << device.get_devnode() << std::endl;
+					}
 				}
 				catch(std::runtime_error ex)
 				{

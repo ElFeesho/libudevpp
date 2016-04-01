@@ -38,6 +38,11 @@ namespace Udev
 		}
 	}
 
+	bool UdevDevice::is_initialized() const
+	{
+		return udev_device_get_is_initialized(handle) == 1;
+	}
+
 	bool UdevDevice::has_action() const
 	{
 		return udev_device_get_action(handle) != nullptr;
@@ -56,5 +61,15 @@ namespace Udev
 	std::string UdevDevice::get_devpath() const
 	{
 		return udev_device_get_devpath(handle);
+	}
+
+	bool UdevDevice::has_devnode() const
+	{
+		return udev_device_get_devnode(handle) != nullptr;
+	}
+
+	std::string UdevDevice::get_devnode() const
+	{
+		return udev_device_get_devnode(handle);
 	}
 }

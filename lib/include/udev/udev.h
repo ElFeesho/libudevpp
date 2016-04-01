@@ -26,7 +26,6 @@ namespace Udev
 		UdevHandle *handle;
 	};
 
-
 	class UdevMonitor
 	{
 	public:
@@ -55,12 +54,16 @@ namespace Udev
 		UdevDevice& operator=(UdevDevice &&);
 		~UdevDevice();
 
+		bool is_initialized() const;
+
 		bool has_action() const;
 		std::string get_action() const;
 
 		bool has_devpath() const;
 		std::string get_devpath() const;
 
+		bool has_devnode() const;
+		std::string get_devnode() const;
 
 	private:
 		UdevDeviceHandle *handle;
