@@ -52,6 +52,10 @@ int main(int argc, char **argv)
 					{
 						std::cout << "Device Action: " << device.get_action() << std::endl;
 					}
+					if (device.has_devpath())
+					{
+						std::cout << "Device Path: " << device.get_devpath() << std::endl;
+					}
 				}
 				catch(std::runtime_error ex)
 				{

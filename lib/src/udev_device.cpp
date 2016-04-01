@@ -47,4 +47,14 @@ namespace Udev
 	{
 		return std::string(udev_device_get_action(handle));
 	}
+
+	bool UdevDevice::has_devpath() const
+	{
+		return udev_device_get_devpath(handle) != nullptr;
+	}
+
+	std::string UdevDevice::get_devpath() const
+	{
+		return udev_device_get_devpath(handle);
+	}
 }

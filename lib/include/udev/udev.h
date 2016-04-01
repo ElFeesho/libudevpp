@@ -58,6 +58,10 @@ namespace Udev
 		bool has_action() const;
 		std::string get_action() const;
 
+		bool has_devpath() const;
+		std::string get_devpath() const;
+
+
 	private:
 		UdevDeviceHandle *handle;
 	};
