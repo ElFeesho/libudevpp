@@ -107,4 +107,15 @@ namespace Udev
 	{
 		return udev_device_get_sysnum(handle);
 	}
+
+	bool UdevDevice::has_driver() const
+	{
+		return udev_device_get_driver(handle) != nullptr;
+	}
+
+	std::string UdevDevice::get_driver() const
+	{
+		return udev_device_get_driver(handle);
+	}
 }
+

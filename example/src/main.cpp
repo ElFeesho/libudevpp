@@ -68,6 +68,11 @@ int main(int argc, char **argv)
 						std::cout << "Sys Num: " << device.get_sysnum() << std::endl;
 					}
 
+					if (device.has_driver())
+					{
+						std::cout << "Driver: " << device.get_driver() << std::endl;
+					}
+
 					if (device.has_action())
 					{
 						std::cout << "Device Action: " << device.get_action() << std::endl;

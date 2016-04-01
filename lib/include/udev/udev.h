@@ -75,6 +75,8 @@ namespace Udev
 		bool has_sysnum() const;
 		std::string get_sysnum() const;
 
+		bool has_driver() const;
+		std::string get_driver() const;
 
 	private:
 		UdevDeviceHandle *handle;
