@@ -62,6 +62,18 @@ int main(int argc, char **argv)
 					std::cout << "   Sys Path: " << device.get_syspath() << std::endl;
 					std::cout << "   Sys Name: " << device.get_sysname() << std::endl;
 
+					auto sysattrs = device.get_sysattr_map();
+					if (sysattrs.size() > 0)
+					{
+						for (auto sysattr_pair : sysattrs)
+						{
+							std::cout << sysattr_pair.first << ": " << sysattr_pair.second << std::endl;
+						}
+					}
+					else
+					{
+						std::cout << "No attributes" << std::endl;
+					}
 
 					if (device.has_sysnum())
 					{

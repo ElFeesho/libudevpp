@@ -1,3 +1,5 @@
+#include <map>
+
 #include <libudev.h>
 
 #include "udev.h"
@@ -116,6 +118,27 @@ namespace Udev
 	std::string UdevDevice::get_driver() const
 	{
 		return udev_device_get_driver(handle);
+	}
+
+	std::map<std::string, std::string> UdevDevice::get_sysattr_map() const
+	{
+		std::map<std::string, std::string> attr;
+		auto sysattr_list = udev_device_get_sysattr_list_entry(handle);
+		struct udev_list_entry *entry = nullptr;
+		udev_list_entry_foreach(entry, sysattr_list)
+		{
+			const char *key = udev_list_entry_get_name(entry);
+			const char *value = udev_device_get_sysattr_value(handle, key);
+			if (entry != nullptr)
+			{
+				if (key != nullptr && value != nullptr)
+				{
+					attr[std::string(udev_list_entry_get_name(entry))] = std::string(value);
+				}
+			}
+		}
+
+		return attr;
 	}
 }
 

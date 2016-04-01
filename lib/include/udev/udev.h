@@ -1,5 +1,6 @@
 #pragma once
 
+#include <map>
 #include <string>
 
 namespace Udev
@@ -78,6 +79,7 @@ namespace Udev
 		bool has_driver() const;
 		std::string get_driver() const;
 
+		std::map<std::string, std::string> get_sysattr_map() const;
 	private:
 		UdevDeviceHandle *handle;
 	};
