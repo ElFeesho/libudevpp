@@ -1,0 +1,9 @@
+cmake_minimum_required(VERSION 3.0)
+
+set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS}")
+
+set(SOURCES src/udev.cpp include/udev/udev.h)
+
+include_directories(include/udev)
+
+add_library(udevpp ${SOURCES})
