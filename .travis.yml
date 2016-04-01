@@ -1,30 +1,7 @@
-language: cpp
-
+# Use new trusty images, should yield newer compilers and packages
 sudo: required
-dist: trusty
-
-compiler:
-  - g++
-
-before_install:
-  - echo $LANG
-  - echo $LC_ALL
-  - if [ $TRAVIS_OS_NAME == linux ]; then sudo apt-get update && sudo apt-get install -y cmake libudev-dev; fi
-
-script: cmake .; make
-
-after_success:
-  - echo Success
-
-branches:
-  only:
-    - master
-
-notifications:
-  email: false
-
-os:
-  - linux
+dist: precise
+language: cpp
 
 matrix:
   include:
@@ -62,3 +39,12 @@ matrix:
           packages:
             - clang-3.7
       env: COMPILER=clang++-3.7
+
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y libopencv-dev
+script:
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
+  
