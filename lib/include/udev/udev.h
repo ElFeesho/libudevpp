@@ -6,8 +6,10 @@ namespace Udev
 {
 	using UdevHandle = struct udev;
 	using UdevMonitorHandle = struct udev_monitor;
+	using UdevDeviceHandle = struct udev_device;
 
 	class UdevMonitor;
+	class UdevDevice;
 
 	class Udev
 	{
@@ -37,7 +39,22 @@ namespace Udev
 
 		void enable_receiving() const;
 		int get_fd() const;
+
+		UdevDevice receive_device() const;
 	private:
 		UdevMonitorHandle *handle;
+	};
+
+	class UdevDevice
+	{
+	public:
+		UdevDevice(UdevDeviceHandle *device);
+		UdevDevice(const UdevDevice &);
+		UdevDevice(UdevDevice &&);
+		UdevDevice& operator=(const UdevDevice &);
+		UdevDevice& operator=(UdevDevice &&);
+		~UdevDevice();
+	private:
+		UdevDeviceHandle *handle;
 	};
 }

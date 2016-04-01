@@ -45,6 +45,14 @@ int main(int argc, char **argv)
 			if (FD_ISSET(monitor_fd, &monitor_set))
 			{
 				std::cout << "Received event" << std::endl;
+				try
+				{
+					Udev::UdevDevice device = monitor.receive_device();
+				}
+				catch(std::runtime_error ex)
+				{
+					std::cerr << "Failed receiving device: " << ex.what() << std::endl;
+				}
 			}
 		}
 	}

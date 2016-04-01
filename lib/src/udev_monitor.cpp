@@ -52,4 +52,14 @@ namespace Udev
 	{
 		return udev_monitor_get_fd(handle);
 	}
+
+	UdevDevice UdevMonitor::receive_device() const
+	{
+		auto device = udev_monitor_receive_device(handle);
+		if (device == nullptr)
+		{
+			throw std::runtime_error("Device could not be received");
+		}
+		return UdevDevice(device);
+	}
 }
