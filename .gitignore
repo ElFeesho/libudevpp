@@ -31,4 +31,5 @@ cmake_install.cmake
 CMakeFiles
 CMakeCache.txt
 example/udevpp_example
+example/udevpp_enumerate_example
 Makefile

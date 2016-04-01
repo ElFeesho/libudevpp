@@ -58,6 +58,23 @@ namespace Udev
 		UdevEnumerate &operator=(const UdevEnumerate &other);
 		UdevEnumerate &operator=(UdevEnumerate &&other);
 		~UdevEnumerate();
+
+		void add_match_subsystem(const std::string subsystem) const;
+		void add_nomatch_subsystem(const std::string subsystem) const;
+
+		void add_match_sysattr(const std::string sysattr, const std::string value = "") const;
+		void add_nomatch_sysattr(const std::string sysattr, const std::string value = "") const;
+
+		void add_match_property(const std::string property, const std::string value) const;
+
+		void add_match_tag(const std::string tag) const;
+
+		void add_match_is_initialized() const;
+
+		void scan_devices() const;
+		void scan_subsystems() const;
+
+		std::vector<UdevDevice> enumerate_devices() const;
 	private:
 		UdevEnumerateHandle *handle;
 	};
