@@ -7,4 +7,4 @@ set(SOURCES src/main.cpp)
 include_directories(../lib/include)
 
 add_executable(udevpp_example ${SOURCES})
-target_link_libraries(udevpp_example udevpp)
+target_link_libraries(udevpp_example udevpp udev)
