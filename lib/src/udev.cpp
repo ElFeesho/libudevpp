@@ -45,4 +45,9 @@ namespace Udev
 		assert(name != nullptr && (std::string(name) == "udev" || std::string(name) == "kernel"));
 		return UdevMonitor(udev_monitor_new_from_netlink(handle, name));
 	}
+
+	UdevEnumerate Udev::enumerate_new()
+	{
+		return UdevEnumerate(udev_enumerate_new(handle));
+	}
 }

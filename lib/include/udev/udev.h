@@ -9,9 +9,11 @@ namespace Udev
 	using UdevHandle = struct udev;
 	using UdevMonitorHandle = struct udev_monitor;
 	using UdevDeviceHandle = struct udev_device;
+	using UdevEnumerateHandle = struct udev_enumerate;
 
 	class UdevMonitor;
 	class UdevDevice;
+	class UdevEnumerate;
 
 	class Udev
 	{
@@ -24,6 +26,7 @@ namespace Udev
 		~Udev();
 
 		UdevMonitor monitor_new_from_netlink(const char *name = "udev");
+		UdevEnumerate enumerate_new();
 	private:
 		UdevHandle *handle;
 	};
@@ -45,6 +48,20 @@ namespace Udev
 	private:
 		UdevMonitorHandle *handle;
 	};
+
+	class UdevEnumerate
+	{
+	public:
+		UdevEnumerate(UdevEnumerateHandle *enumerate);
+		UdevEnumerate(const UdevEnumerate &other);
+		UdevEnumerate(UdevEnumerate &&other);
+		UdevEnumerate &operator=(const UdevEnumerate &other);
+		UdevEnumerate &operator=(UdevEnumerate &&other);
+		~UdevEnumerate();
+	private:
+		UdevEnumerateHandle *handle;
+	};
+
 
 	class UdevDevice
 	{
