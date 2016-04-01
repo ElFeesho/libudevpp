@@ -125,6 +125,16 @@ namespace Udev
 		return std::find(keys.begin(), keys.end(), named) != keys.end();
 	}
 
+	std::string UdevDevice::get_sysattr(const std::string named) const
+	{
+		const char *value = udev_device_get_sysattr_value(handle, named.c_str());
+		if (value == nullptr)
+		{
+			throw std::runtime_error("systemattr does not exist or could not be retrieved");
+		}
+		return std::string(value);
+	}
+
 	std::vector<std::string> UdevDevice::get_sysattr_keys() const
 	{
 		std::vector<std::string> keys;

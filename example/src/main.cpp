@@ -71,6 +71,7 @@ int main(int argc, char **argv)
 					if (device.has_sysattr("trigger"))
 					{
 						std::cout << termcolor::green << "Contains trigger system attribute" << termcolor::reset << std::endl;
+						std::cout << "Trigger: " << device.get_sysattr("trigger") << std::endl;
 					}
 					else
 					{

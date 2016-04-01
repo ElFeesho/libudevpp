@@ -81,6 +81,7 @@ namespace Udev
 		std::string get_driver() const;
 
 		bool has_sysattr(const std::string named) const;
+		std::string get_sysattr(const std::string named) const;
 
 		std::vector<std::string> get_sysattr_keys() const;
 
