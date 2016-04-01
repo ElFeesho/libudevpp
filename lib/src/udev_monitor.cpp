@@ -47,4 +47,9 @@ namespace Udev
 			throw std::runtime_error("Unable to enable receiving of events");
 		}
 	}
+
+	int UdevMonitor::get_fd() const
+	{
+		return udev_monitor_get_fd(handle);
+	}
 }

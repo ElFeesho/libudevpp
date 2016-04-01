@@ -36,6 +36,7 @@ namespace Udev
 		~UdevMonitor();
 
 		void enable_receiving() const;
+		int get_fd() const;
 	private:
 		UdevMonitorHandle *handle;
 	};
