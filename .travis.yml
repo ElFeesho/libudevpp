@@ -13,7 +13,7 @@ matrix:
           packages:
             - g++-4.9
             - libudev-dev
-      env: COMPILER=g++-4.9
+      env: CMAKE_CXX_COMPILER=g++-4.9
 
 script:
   - mkdir build
