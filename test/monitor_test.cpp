@@ -10,6 +10,13 @@ extern "C" {
 	const char *udev_monitor_new_from_netlink_captured_name = nullptr;
 
 	extern struct udev_monitor* __real_udev_monitor_new_from_netlink(struct udev*, const char*);
+	extern int __real_udev_device_get_is_initialized(struct udev_device *);
+
+
+	int __wrap_udev_device_get_is_initialized(struct udev_device* device)
+	{
+		return __real_udev_device_get_is_initialized(device);
+	}
 
 	int __wrap_udev_monitor_enable_receiving(struct udev_monitor*)
 	{
