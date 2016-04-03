@@ -1,51 +1,19 @@
-# Use new trusty images, should yield newer compilers and packages
-sudo: required
-dist: precise
 language: cpp
 
-matrix:
-  include:
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-4.9
-            - libudev-dev
-      env: COMPILER=g++-4.9
-#    - compiler: gcc
-#      addons:
-#        apt:
-#          sources:
-#            - ubuntu-toolchain-r-test
-#          packages:
-#            - g++-5
-#            - libudev-dev
-#      env: COMPILER=g++-5
-#    - compiler: clang
-#      addons:
-#        apt:
-#          sources:
-#            - ubuntu-toolchain-r-test
-#            - llvm-toolchain-precise-3.6
-#          packages:
-#            - clang-3.6
-#            - libudev-dev
-#      env: COMPILER=clang++-3.6
-#    - compiler: clang
-#      addons:
-#        apt:
-#          sources:
-#            - ubuntu-toolchain-r-test
-#            - llvm-toolchain-precise-3.7
-#          packages:
-#            - clang-3.7
-#            - libudev-dev
-#      env: COMPILER=clang++-3.7
+include:
+  - compiler: gcc
+    addons:
+      apt:
+        sources:
+          - ubuntu-toolchain-r-test
+        packages:
+          - g++-5
+          - libudev-dev
+    env: COMPILER=g++-5
 
-before_install:
-  - sudo apt-get update -qq
+install:
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-5" CC="gcc-5"; fi
+    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.7" CC="clang-3.7"; fi
 
 script:
   - cmake .
@@ -53,3 +21,4 @@ script:
   - cd test
   - ctest
   
+
