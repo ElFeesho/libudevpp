@@ -3,15 +3,17 @@ language: cpp
 sudo: required
 dist: trusty
 
-include:
-  - compiler: gcc
-    addons:
-      apt:
-        sources:
-          - ubuntu-toolchain-r-test
-        packages:
-          - g++-4.9
-    env: COMPILER=g++-4.9
+matrix:
+  include:
+    - compiler: gcc
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+            - libudev-dev
+      env: COMPILER=g++-4.9
 
 script:
   - mkdir build
