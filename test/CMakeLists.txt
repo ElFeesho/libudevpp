@@ -1,7 +1,7 @@
  cmake_minimum_required(VERSION 2.8)
 
 project ("libudevpp Unit Tests")
-set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS} -Wl,-wrap,udev_monitor_enable_receiving")
+set(CMAKE_CXX_FLAGS "-std=c++14 ${CMAKE_CXX_FLAGS} -Wl,-wrap,udev_monitor_enable_receiving,-wrap,udev_monitor_get_fd,-wrap,udev_monitor_new_from_netlink")
 enable_testing()
 add_subdirectory (gtest-1.7.0)
 
