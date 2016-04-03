@@ -1,7 +1,7 @@
-language: cpp
-
+# Use new trusty images, should yield newer compilers and packages
 sudo: required
-dist: trusty
+dist: precise
+language: cpp
 
 matrix:
   include:
@@ -13,11 +13,13 @@ matrix:
           packages:
             - g++-4.9
             - libudev-dev
-      env: COMPILER=`g++-4.9`
+      env: COMPILER=g++-4.9
 
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y libudev-dev
 script:
-  - echo "Compiler: $COMPILER"
-  - export COMPILER=`which $COMPILER`
-  - echo "Compiler: $COMPILER"
-  - ./ci.sh
-
+  - mkdir build
+  - cd build
+  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
+  
