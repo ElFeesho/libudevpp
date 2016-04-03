@@ -13,14 +13,9 @@ matrix:
           packages:
             - g++-4.9
             - libudev-dev
-      env: CMAKE_CXX_COMPILER=g++-4.9
+      env: COMPILER=`g++-4.9`
 
 script:
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make
-  - cd test
-  - ctest
-  
+  - export COMPILER=`which $COMPILER`
+  - ./ci.sh  
 
