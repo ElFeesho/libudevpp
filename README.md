@@ -9,6 +9,6 @@ There is only currently partial coverage of libudev:
  * `udev` - no log methods implemented
  * `udev_device` - several methods missing
  * `udev_monitor` - several methods missing, such as filtering
- * `udev_enumerate` - currently not functioning
-
+ * `udev_enumerate` - All implemented apart from `udev_enumerate_add_match_parent`
+ * `udev_queue` - No implementation
  
