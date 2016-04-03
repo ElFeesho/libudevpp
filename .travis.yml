@@ -1,5 +1,8 @@
 language: cpp
 
+sudo: required
+dist: trusty
+
 include:
   - compiler: gcc
     addons:
@@ -7,15 +10,13 @@ include:
         sources:
           - ubuntu-toolchain-r-test
         packages:
-          - g++-5
-          - libudev-dev
-    env: COMPILER=g++-5
-
-install:
-    - export CXX="g++-5" CC="g++-5"
+          - g++-4.9
+    env: COMPILER=g++-4.9
 
 script:
-  - cmake .
+  - mkdir build
+  - cd build
+  - cmake ..
   - make
   - cd test
   - ctest
