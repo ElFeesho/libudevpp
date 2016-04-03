@@ -16,6 +16,8 @@ matrix:
       env: COMPILER=`g++-4.9`
 
 script:
+  - echo "Compiler: $COMPILER"
   - export COMPILER=`which $COMPILER`
-  - ./ci.sh  
+  - echo "Compiler: $COMPILER"
+  - ./ci.sh
 

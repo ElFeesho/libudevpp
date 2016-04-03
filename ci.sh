@@ -1,11 +1,16 @@
 #!/bin/bash
 
 echo "Running CMake"
-cmake .
+if [ -z "$COMPILER" ]; then
+	cmake .
+else
+	echo Overriding C++ compiler to $COMPILER
+	cmake -DCMAKE_CXX_COMPILER=$COMPILER .
+fi
 
 echo "Compiling"
 make
 
 echo "Testing"
 cd test
-./monitor_test
+ctest
