@@ -22,4 +22,5 @@ script:
   - mkdir build
   - cd build
   - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
-  
+  - cd test
+  - ctest  
