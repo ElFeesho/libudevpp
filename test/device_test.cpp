@@ -2,7 +2,7 @@
 
 #include <libudev.h>
 
-#include <udev/udev.h>
+#include <udevpp.h>
 
 extern "C" {
 

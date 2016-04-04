@@ -1,6 +1,6 @@
 #include <libudev.h>
 
-#include <udev/udev.h>
+#include <udevpp.h>
 
 #include <gtest/gtest.h>
 

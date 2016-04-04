@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-
+project("Udevpp - C++ libudev wrapper")
 add_subdirectory(example)
 add_subdirectory(test)
 add_subdirectory(lib)

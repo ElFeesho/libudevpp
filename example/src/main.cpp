@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <memory>
-#include <udev/udev.h>
+#include <udevpp.h>
 
 #include <sys/select.h>
 #include <signal.h>

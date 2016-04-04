@@ -2,7 +2,7 @@
 
 #include <libudev.h>
 
-#include "udev.h"
+#include "udevpp.h"
 
 namespace Udev
 {
