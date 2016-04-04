@@ -15,9 +15,15 @@ namespace Udev
 	class UdevDevice;
 	class UdevEnumerate;
 
+	/**
+	 * Class representing a udev context
+	 */
 	class Udev
 	{
 	public:
+	   /**
+	    * Acquire new udev context
+   	 */
 		explicit Udev();
 		Udev(const Udev& other);
 		Udev(Udev&& other);
@@ -25,12 +31,25 @@ namespace Udev
 		Udev& operator=(Udev&& other);
 		~Udev();
 
+	   /**
+	    * Create new udev monitor for netlink described by @name.
+	    * @param name Name can be "udev" or "kernel" (default is "udev")
+	    * @return A {@link UdevMonitor} instance
+       */
 		UdevMonitor monitor_new_from_netlink(const char *name = "udev");
+
+		/**
+	    * Create new udev enumerator
+	    * @return A {@link UdevEnumerator} instance which can be used to enumerate devices known to udev
+       */
 		UdevEnumerate enumerate_new();
 	private:
 		UdevHandle *handle;
 	};
 
+	/**
+	 * Class that encapsulates monitoring functionality provided by Udev
+	 */
 	class UdevMonitor
 	{
 	public:
@@ -49,6 +68,9 @@ namespace Udev
 		UdevMonitorHandle *handle;
 	};
 
+	/**
+	 * Class that encapsulated enumeration functionality provided by Udev
+	 */
 	class UdevEnumerate
 	{
 	public:
@@ -79,7 +101,9 @@ namespace Udev
 		UdevEnumerateHandle *handle;
 	};
 
-
+	/**
+	 * Class that encapsulates the concept of a device as described by Udev
+	 */
 	class UdevDevice
 	{
 	public:
