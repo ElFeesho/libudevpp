@@ -1,30 +1,32 @@
-# Use new trusty images, should yield newer compilers and packages
 sudo: required
 dist: precise
 language: cpp
-
 matrix:
   include:
-    - compiler: gcc
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-4.9
-            - libudev-dev
-            - doxygen
-            - graphviz
-      env: COMPILER=g++-4.9
-
+  - compiler: gcc
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - g++-4.9
+        - libudev-dev
+        - doxygen
+        - graphviz
+    env: COMPILER=g++-4.9
 before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y libudev-dev
+- sudo apt-get update -qq
+- sudo apt-get install -y libudev-dev
 script:
-  - mkdir build
-  - cd build
-  - cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
-  - cd test
-  - ctest  
-  - cd ..
-  - doxygen doxygen.conf
+- export
+- mkdir build
+- cd build
+- cmake -DCMAKE_CXX_COMPILER=$COMPILER .. && make
+- cd test
+- ctest
+- cd ..
+- ls
+- doxygen doxygen.conf
+env:
+  global:
+    secure: cowTvUeEHYDLyk7dRPUFSk4gypke/t3Xut3juaEiv6rp2bFSktOfUGqGFwk8DVIH6yOaLhRwaNxWx9+u6AAtA9Ldzw9D9Nj6kuuLUW/wPu+m9vQUUDsI5fbJaEolWIo1pRUA2Cdn1L30sCopHWwCewqdn1khtU03a5jjWL7Mbf2pkeVRF/21A15IVKhAiYs+vTL8Ri2fL9eeUSXrGD200D82wrgapTc64NL2NEYR0cgggQlIjHhDnx9GxG2cpJ1qJDf4amlh8a9irUGPWT1nFApbBkgpumnsFFeuYzjWmi1nipJxJDMQg+aVGFqRUHt7P/aUJQmtm972zX6E9nuJwjcRLEIeHCWTyP03f6YIQWm5n4izvHML5GwXyg5swy82wqheQtc80TPpRrZxCFFi7XW9PrqSnrEAf3OPs5aISf+pRhlAM77YyE6zubgZuZ0C45U7Z8npA3gCLCQuxWDbG4ts0QMDbavAwO1OTjDaER/ISdIuVPZxu472otF194JdNymkLsPoIPKyyLcQh3UZZpWmNE0vGRB21J/SYQbE6frbLmlj3+rRzO3DOus0geDaGIKJyyIFVUQU14YQgVZVriNqhGoYYLP0Kzb7UX03rlP90rxDR5vNPjioKQtxfisN7bOveAn8pXRsdGON9IBhAOnmYklYXyKmr3Q2De9ecUo=
