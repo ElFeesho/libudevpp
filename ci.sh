@@ -14,3 +14,6 @@ make
 echo "Testing"
 cd test
 ctest
+
+cd ..
+doxygen doxygen.conf
